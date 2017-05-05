@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Simple TicTacToe </title>
+    <style>
+      .board {
+        display: flex;
+        width: 600px;
+        height: 600px;
+        background-color: white;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      .button{
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 5px solid black;
+        font-size: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .button:hover {
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HELLO SEYI</h1>
+    <div class="board">
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+    </div>
+    <script>
+      const player1Symbol = 'X';
+      const player2Symbol = 'O';
+      let currentTurn = player1Symbol;
+
+      const board = document.querySelector('.board');
+      board.addEventListener('click', (event) => {
+        event.target.innerHTML = currentTurn;
+        currentTurn = currentTurn===player1Symbol ? player2Symbol : player1Symbol;
+        if (checkForWinner()) {
+          alert('I won');
+        };
+      });
+
+      function checkForWinner() {
+        const buttons = Array.prototype.slice.call(document.querySelectorAll('.button'), 0);
+        const symbol = buttons.map((button) => {
+          return button.innerHTML;
+        });
+        const winningCombination = [[0,1,2], [3,4,5], [6,7,8], [0,4,8], [2,4,6], [0,3,6], [2,5,8]];
+        return winningCombination.find((combination) => {
+          if(symbol[combination[0]]=== symbol[combination[1]] && symbol[combination[1]]===symbol[combination[2]]) {
+            return symbol[combination[0]];
+          } else {
+            return false;
+          }
+        });
+        console.log(symbol);
+      }
+    </script>
+  </body>
+</html>
