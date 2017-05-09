@@ -8,13 +8,19 @@ class TicTacToe extends Component {
       playerOneSymbol: 'X',
       playerTwoSymbol: 'O',
       currentTurn: 'X',
-      board: Array(3).fill([[], ['c'], []]),
+      board: Array(9).fill([[], ['c'], []]),
       };
       this.boardView = [];
       this.checkWin = this.checkWin.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(i, index, value) {
+    if(this.state.board[index[i]]=== ' ') {
+      this.setState = {
+        board: this.state.board,
+        currentTurn: this.state.currentTurn===this.state.playerOneSymbol ? this.state.playerTwoSymbol : this.state.playerOneSymbol
+      }
+    }
     const boardState = {};
     boardState[[index, i]] = value || '0 value';
     console.log('Board state: ', boardState)
@@ -33,13 +39,12 @@ class TicTacToe extends Component {
   }
 
   render() {
-    const turn = this.state.currentTurn ? this.state.playerTwoSymbol : this.state.playerOneSymbolj
     return (
       <div className="board">
         {this.state.board.map((cell, index) =>
           cell.map((current, i) => {
             return <div className="square"
-            onClick={() => console.log(index, i)}>{index}, {i}, {this.handleClick(i, index, current)} </div>
+            onClick={() => console.log(index, i)}>{index}{this.handleClick(i, index, current)} </div>
             })
         )}
       </div>
