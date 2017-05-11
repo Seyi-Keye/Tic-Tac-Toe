@@ -8,44 +8,48 @@ class TicTacToe extends Component {
       playerOneSymbol: 'X',
       playerTwoSymbol: 'O',
       currentTurn: 'X',
-      board: Array(9).fill([[], ['c'], []]),
+      board: Array(9).fill(''),
       };
-      this.boardView = [];
-      this.checkWin = this.checkWin.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.boardView = [];
+    this.checkWin = this.checkWin.bind(this);
+    this.handleDisplay = this.handleDisplay.bind(this);
   }
-  handleClick(i, index, value) {
-    if(this.state.board[index[i]]=== ' ') {
+
+  handleDisplay(index, value) {
+    if(this.state.board[index]=== ' ') {
       this.setState = {
         board: this.state.board,
         currentTurn: this.state.currentTurn===this.state.playerOneSymbol ? this.state.playerTwoSymbol : this.state.playerOneSymbol
       }
+      console.log('currentTurn', this.state)
     }
-    const boardState = {};
-    boardState[[index, i]] = value || '0 value';
-    console.log('Board state: ', boardState)
-    this.boardView = this.boardView.concat(boardState);
-    console.log(this.boardView, 'boardViews');
+
+    const boardSquareState = {};
+    boardSquareState[index] = value || '0 value';
+    console.log('Board square state: ', boardSquareState,  ' board :', this.setState.board)
+    this.boardView = this.boardView.concat(boardSquareState);
+    // console.log(this.boardView, 'boardViews');
     this.checkWin();
   }
+
+  handleClick() {  }
 
   drawTreeForMoves() {}
   randomMove() {}
   decideResult() {}
   checkWin() {
-    if(this.board === [0,0]) {
+    if(this.board === []) {
       alert('Hw');
     }
   }
 
+  updateBoard(){}
+
   render() {
     return (
       <div className="board">
-        {this.state.board.map((cell, index) =>
-          cell.map((current, i) => {
-            return <div className="square"
-            onClick={() => console.log(index, i)}>{index}{this.handleClick(i, index, current)} </div>
-            })
+        {this.state.board.map((square, index) =>
+            <div className="square" key={index} onClick={() => console.log('index: ', index, ' boardView:', this.boardView, this.state.currentTurn)}> {index}{this.handleDisplay(index)} </div>
         )}
       </div>
     );
