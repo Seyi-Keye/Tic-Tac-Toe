@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TicTacToe extends Component {
+export class TicTacToe extends Component {
 
   constructor() {
     super();
@@ -17,11 +17,11 @@ class TicTacToe extends Component {
 
   handleDisplay(index, value) {
     if(this.state.board[index]=== ' ') {
-      this.setState = {
+      this.setState({
         board: this.state.board,
         currentTurn: this.state.currentTurn===this.state.playerOneSymbol ? this.state.playerTwoSymbol : this.state.playerOneSymbol
-      }
-      console.log('currentTurn', this.state)
+      })
+      console.log('currentTurn', this.state.currentTurn)
     }
 
     const boardSquareState = {};
@@ -55,5 +55,3 @@ class TicTacToe extends Component {
     );
   }
 }
-
-export default TicTacToe;
